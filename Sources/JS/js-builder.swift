@@ -28,3 +28,56 @@ public enum JS {
         "if(!(\(flagExpr))){ \(setExpr) = true; \(body) }"
     }
 }
+
+public extension JS {
+    static func source(
+        _ code: String
+    ) -> JSSource {
+        return JSSource(code)
+    }
+
+    static func source(
+        _ parts: [JSSource],
+        separator: String = "\n"
+    ) -> JSSource {
+        return parts.joinedSource(
+            separator: separator
+        )
+    }
+
+    static func onDomReady(
+        _ body: JSSource
+    ) -> JSSource {
+        return JSSource(
+            onDomReady(body.render())
+        )
+    }
+
+    static func on(
+        _ event: String,
+        selector: String,
+        body: JSSource
+    ) -> JSSource {
+        return JSSource(
+            on(
+                event,
+                selector: selector,
+                body: body.render()
+            )
+        )
+    }
+
+    static func guardOnce(
+        flagExpr: String,
+        setExpr: String,
+        body: JSSource
+    ) -> JSSource {
+        return JSSource(
+            guardOnce(
+                flagExpr: flagExpr,
+                setExpr: setExpr,
+                body: body.render()
+            )
+        )
+    }
+}
