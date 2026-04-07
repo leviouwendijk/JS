@@ -81,3 +81,43 @@ public extension JS {
         )
     }
 }
+
+public extension JS {
+    static func inline_script(
+        _ source: JSSource,
+        attributes: JSScriptAttributes = .default
+    ) -> JSScript {
+        return .inline(
+            source,
+            attributes: attributes
+        )
+    }
+
+    static func external_script(
+        _ src: String,
+        attributes: JSScriptAttributes = .default
+    ) -> JSScript {
+        return .external(
+            JSExternalSource(src),
+            attributes: attributes
+        )
+    }
+
+    static func module(
+        _ source: JSSource
+    ) -> JSScript {
+        return .inline(
+            source,
+            attributes: .module
+        )
+    }
+
+    static func external_module(
+        _ src: String
+    ) -> JSScript {
+        return .external(
+            JSExternalSource(src),
+            attributes: .module
+        )
+    }
+}

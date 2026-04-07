@@ -1,10 +1,6 @@
 import Foundation
 
-public struct JSSource:
-    Sendable,
-    Equatable,
-    ExpressibleByStringLiteral
-{
+public struct JSSource: Sendable, Equatable, ExpressibleByStringLiteral {
     public var code: String
 
     public init(_ code: String) {
@@ -72,5 +68,13 @@ public extension JSSource {
         return JSSource(
             JS.assign(lhs, rhs)
         )
+    }
+}
+
+public extension Array where Element == JSScript {
+    func rendered_file_contents() -> [String] {
+        return self.compactMap {
+            $0.rendered_file_content()
+        }
     }
 }
