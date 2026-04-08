@@ -1,3 +1,5 @@
+import DSL
+
 public extension JSSource {
     func rendered_file_content(
         ensure_trailing_newline: Bool = true
@@ -43,5 +45,25 @@ public extension JSScript {
         case .external:
             return nil
         }
+    }
+}
+
+public extension JSScript {
+    func scoped<Scope: ScopeIdentifying>(
+        _ scope: Scope
+    ) -> JSBundledScript {
+        JSBundledScript(
+            scope: scope.scope_id,
+            script: self
+        )
+    }
+
+    func scoped(
+        _ scope: ScopeIdentifier
+    ) -> JSBundledScript {
+        JSBundledScript(
+            scope: scope,
+            script: self
+        )
     }
 }
