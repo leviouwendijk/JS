@@ -19,7 +19,7 @@ public func bundle<Scope: ScopeIdentifying>(
     _ script: JSScript
 ) -> JSBundledScript {
     JSBundledScript(
-        scope: scope.scope_id,
+        scope: scope.scope,
         script: script
     )
 }

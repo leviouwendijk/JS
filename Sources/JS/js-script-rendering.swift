@@ -53,7 +53,7 @@ public extension JSScript {
         _ scope: Scope
     ) -> JSBundledScript {
         JSBundledScript(
-            scope: scope.scope_id,
+            scope: scope.scope,
             script: self
         )
     }
